@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardio Section</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+    }
+
+    .cardio-section {
+      position: relative;
+      background: url('https://source.unsplash.com/random/1920x1080?fitness') no-repeat center center/cover;
+      height: 100vh;
+      color: white;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-description {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slider {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      z-index: 2;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <section id="cardio" class="cardio-section">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1 class="section-title">Cardio Workouts</h1>
+      <p class="section-description">Boost your cardiovascular health with our high-energy cardio workouts. From running to cycling, we have something for everyone.</p>
+      <div class="slider">
+        <div class="slides">
+          <div class="slide"><img src="https://source.unsplash.com/5gUupBaKngY/800x400" alt="Cardio 1"></div>
+          <div class="slide"><img src="https://source.unsplash.com/wh8LH6IHriU/800x400" alt="Cardio 2"></div>
+          <div class="slide"><img src="https://source.unsplash.com/zFSo6bnZJTw/800x400" alt="Cardio 3"></div>
+          <div class="slide"><img src="https://source.unsplash.com/VJqQJ6kC0Ik/800x400" alt="Cardio 4"></div>
+          <div class="slide"><img src="https://source.unsplash.com/wB5D3Y-JahM/800x400" alt="Cardio 5"></div>
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+      </div>
+    </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let slideIndex = 0;
+      const slides = document.querySelectorAll('.slide');
+      const prevButton = document.querySelector('.prev');
+      const nextButton = document.querySelector('.next');
+
+      function showSlides() {
+        slides.forEach((slide, index) => {
+          slide.style.opacity = index === slideIndex ? '1' : '0';
+        });
+      }
+
+      function nextSlide() {
+        slideIndex = (slideIndex + 1) % slides.length;
+        showSlides();
+      }
+
+      function prevSlide() {
+        slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+        showSlides();
+      }
+
+      prevButton.addEventListener('click', prevSlide);
+      nextButton.addEventListener('click', nextSlide);
+
+      // Auto-slide functionality
+      setInterval(nextSlide, 3000); // Change slide every 3 seconds
+
+      showSlides(); // Initialize the first slide
+    });
+  </script>
+</body>
+</html>
